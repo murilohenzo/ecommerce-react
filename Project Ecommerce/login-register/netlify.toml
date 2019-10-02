@@ -1,3 +1,9 @@
+[build]
+    command = "npm run build"
+    publish="login-register/build"
+    base = "login-register"
+
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
