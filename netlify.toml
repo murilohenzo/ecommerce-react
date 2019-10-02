@@ -1,0 +1,4 @@
+[build]
+base = "login-register/"
+publish = "login-register/build/"
+command = "yarn build"
