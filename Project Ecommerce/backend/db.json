@@ -11,6 +11,48 @@
       "name": "Maria Juliana",
       "email": "maria@gmail.com",
       "password": "12212212"
+    },
+    {
+      "id": 3,
+      "name": "teste",
+      "email": "teste@gmail.com",
+      "password": "12345"
+    },
+    {
+      "id": 4,
+      "name": "teste1",
+      "email": "teste1@gmail.com",
+      "password": "12345"
+    },
+    {
+      "id": 5,
+      "name": "teste2",
+      "email": "teste2@gmail.com",
+      "password": "teste12345"
+    },
+    {
+      "id": 6,
+      "name": "teste3",
+      "email": "teste3@gmail.com",
+      "password": "12345"
+    },
+    {
+      "name": "teste4",
+      "email": "teste4@gmail.com",
+      "password": "$2a$08$AlG3Pl6Xsdi5IpjpEnwNxO1zhgHzVAUTTuTPQWBWhphLfrbndsfea",
+      "id": 7
+    },
+    {
+      "name": "teste5",
+      "email": "teste5@gmail.com",
+      "password": "$2a$08$QobyxjVsrsyDCPNfzN/8yePWDhJ2Y.fFeT0dx6xdbgNbtPcKLRYKe",
+      "id": 8
+    },
+    {
+      "id": 9,
+      "name": "teste6",
+      "email": "teste6@gmail.com",
+      "password": "$2a$08$EXwUzLKEv.iWioBuWAObm.nvtwMAlfaeLcB3wTAa2jw07fS8vPExi"
     }
   ]
 }
