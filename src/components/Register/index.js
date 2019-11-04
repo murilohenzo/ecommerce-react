@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import "./register.css";
+import bcrypt from "bcryptjs"
 
 import { history } from "../../App";
 import { ToastContainer, toast } from "react-toastify";
@@ -27,7 +28,7 @@ class Register extends Component {
 
   notify = text => toast(text);
 
-  save(e) {
+  async save(e) {
     e.preventDefault();
 
     const user = this.state.user;
@@ -43,10 +44,11 @@ class Register extends Component {
     } else if (!user.password) {
       this.notify("Senha é obrigatória !!!");
     } else {
+      const hashPassword = await bcrypt.hash(user.password, 8);
       const method = "post";
       const url = user.id ? `${baseUrl}/${user.id}` : baseUrl;
 
-      axios[method](url, user)
+      axios[method](url, {id: user.id, name: user.name, email: user.email, password: hashPassword})
         .then(resp => {
           // const list = this.getUpdatedList(resp.data);
 

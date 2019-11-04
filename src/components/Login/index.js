@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import "./login.css";
 import { history } from "../../App";
+import bcrypt from "bcryptjs"
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,7 +32,7 @@ class Login extends Component {
       axios.get(baseUrl).then(resp => {
         const data = resp.data;
         const userExists = data.find(
-          user => user.email === email && user.password === password
+          user => user.email === email && bcrypt.compare(user.password, password)
         );
 
         if (userExists) {
