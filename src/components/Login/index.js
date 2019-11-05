@@ -48,6 +48,7 @@ class Login extends Component {
     return (
       <div>
         <ToastContainer />
+        <h1 className="register-h1">Log in</h1>
         <form onSubmit={this.entrar} className="login">
           <label>Email:</label>
           <br />

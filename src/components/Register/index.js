@@ -76,7 +76,7 @@ class Register extends Component {
     return (
       <div>
         <ToastContainer />
-        <h1 className="register-h1">Novo Usuario</h1>
+        <h1 className="register-h1">Sign up</h1>
         <form className="register">
           <label>Nome:</label>
           <br />

@@ -5972,6 +5972,11 @@ follow-redirects@^1.0.0:
   dependencies:
     debug "^3.0.0"
 
+font-awesome@4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
+  integrity sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM=
+
 for-in@^0.1.3:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-0.1.8.tgz#d8773908e31256109952b1fdb9b3fa867d2775e1"
@@ -11245,6 +11250,13 @@ react-app-polyfill@^1.0.3:
     regenerator-runtime "0.13.3"
     whatwg-fetch "3.0.0"
 
+react-awesome-slider@2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/react-awesome-slider/-/react-awesome-slider-2.1.3.tgz#035b989f002d0b6b3ee0e60f4fe84b4c334c00ff"
+  integrity sha512-1imoBMLd1TJAVAs9U4nnGTe4XXxHywDq5D2fepPzoNbw5YAvMMvWHIY0h6RRHrd523BybzTNekjWYKQx8XpO4g==
+  dependencies:
+    web-animation-club "^0.5.0"
+
 react-dev-utils@^9.0.4:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-9.1.0.tgz#3ad2bb8848a32319d760d0a84c56c14bdaae5e81"
@@ -13666,6 +13678,11 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   integrity sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA==
   dependencies:
     minimalistic-assert "^1.0.0"
+
+web-animation-club@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/web-animation-club/-/web-animation-club-0.5.0.tgz#43f9e762249e8b84e0375bb366b614a988623349"
+  integrity sha512-xByTD+0iL/W+PvDckW8ZPijQb8DRoueebt1ohcatcjHR/agUmf0EQ70q8+DAPeibzSvZAP5plig5TJyRvwgLJw==
 
 webidl-conversions@^4.0.2:
   version "4.0.2"

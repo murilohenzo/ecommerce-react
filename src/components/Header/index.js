@@ -6,7 +6,7 @@ import { Link, withRouter } from "react-router-dom";
 class Header extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg">
+      <nav className="navbar navbar-expand-md">
         <Link to = "/home" className="navbar-brand">
           Serpent
         </Link>
@@ -22,7 +22,7 @@ class Header extends Component {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className="container-fluid" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
               <Link to = '/home' className="nav-link">
