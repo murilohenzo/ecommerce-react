@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import axios from "axios";
 import "./register.css";
-import bcrypt from "bcryptjs"
 
 import { history } from "../../App";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const baseUrl = "http://localhost:3001/users";
+import api from '../../services/api'
+
 const initialState = {
-  user: { id: "", name: "", email: "", password: "" },
+  user: {username: "", email: "", password: "" },
   list: []
 };
 
@@ -21,7 +20,7 @@ function emailIsValid (email) {
 class Register extends Component {
   state = { ...initialState };
   componentDidMount() {
-    axios(baseUrl).then(resp => {
+    api('users').then(resp => {
       this.setState({ list: resp.data });
     });
   }
@@ -35,7 +34,7 @@ class Register extends Component {
 
     // const { email, password } = this.state;
 
-    if (!user.name) {
+    if (!user.username) {
       this.notify("Nome é obrigatório !!!");
     } else if (!user.email) {
       this.notify("Email é obrigatório !!!");
@@ -44,11 +43,8 @@ class Register extends Component {
     } else if (!user.password) {
       this.notify("Senha é obrigatória !!!");
     } else {
-      const hashPassword = await bcrypt.hash(user.password, 8);
-      const method = "post";
-      const url = user.id ? `${baseUrl}/${user.id}` : baseUrl;
 
-      axios[method](url, {id: user.id, name: user.name, email: user.email, password: hashPassword})
+      api.post('users', user)
         .then(resp => {
           // const list = this.getUpdatedList(resp.data);
 
@@ -82,7 +78,7 @@ class Register extends Component {
           <br />
           <input
             type="text"
-            name="name"
+            name="username"
             value={this.state.user.name}
             autoFocus
             autoComplete="off"

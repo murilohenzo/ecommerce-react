@@ -1,59 +1,107 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import api from '../../services/api'
 
-export default class Product extends Component {
+import { TiPlus, TiShoppingCart } from "react-icons/ti";
 
-  state = {
-    produtos: [
-      { id: 1, name: 'Café Java', preco: '250,00', fabricant: 'Dummy', descricao: 'Lorem Um café amargo e pesado, porém para todas as ocasiões.', imagem: require("../../assets/images/cafe.jpg") ,show: false},
-      { id: 2, name: 'Café Javascript', preco: '250,00', fabricant: 'Comunidade', descricao: 'Café popular', imagem: require("../../assets/images/cafe.jpg") ,show: false},
-      { id: 3, name: 'Café C', preco: '250,00', fabricant: 'ISO', descricao: 'Um café rápido de fazer, porém qualquer erro no preparo estraga-o.', imagem: require("../../assets/images/cafe.jpg") ,show: false},
-      { id: 4, name: 'Café C++', preco: '250,00', fabricant: 'ISO', descricao: 'Um café complicado de preparar.', imagem: require("../../assets/images/cafe.jpg"), show: false},
-      { id: 5, name: 'Café Python', preco: '250,00', fabricant: 'URSS', descricao: 'Um café com o preparo demorado, porém delicioso.', imagem: require("../../assets/images/cafe.jpg"), show: false},
-      { id: 6, name: 'Café C#', preco: '250,00', fabricant: 'Microcof', descricao: 'Um café semelhante ao Java, melhor apreciado ao olhar a paisagem pela janela.', imagem: require("../../assets/images/cafe.jpg") ,show: false},
-      { id: 7, name: 'Café ASM', preco: '250,00', fabricant: 'Jet Cooffee', descricao: 'Grãos de café frescos, deixando todo o prepado, começando pela torra dos grãos, nas suas mãos.', imagem: require("../../assets/images/cafe.jpg") ,show: false},
-      { id: 8, name: 'Café Kotlin', preco: '250,00', fabricant: 'Dummy', descricao: 'Uma versão melhorada do Java.', imagem: require("../../assets/images/cafe.jpg") , show: false}
-    ]
-  }
+import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap'
 
-  handleClickProduct = (id) =>  {
-    const newProductsState = this.state.produtos.map(produto => {
-      if(produto.id === id) {
+export default function Product() {
+
+
+    // const [name,setName] = useState('')
+
+
+/*
+
+    async function handleSubmit(e){
+      e.preventDefault();
+      await api.post('222', {
+        name,
+
+      }).then((response) => {
+        alert('cadastrado')
+      })
+
+    }
+    <form onSubmit={handleSubmit}
+
+    <input value={name} onChange={(e) => setName(e.target.value)}
+
+
+    */
+
+  const [produtos, setProdutos] = useState([]);
+
+  // vai executar assim que for montada
+  useEffect(() => {
+    
+    api.get('products')
+      .then(response => {
+        const products = response.data.map(product => {
+          product.show = false;
+          return product;
+        })
+        setProdutos(products)
+      })
+      .catch(err => {
+        alert('Erro na busca')
+      });
+  }, [])
+
+
+  function handleClickProduct(id) {
+    const newProductsState = produtos.map(produto => {
+      if (produto.id === id) {
         produto.show = !produto.show;
+      } else {
+        produto.show = false;
       }
       return produto;
     })
-    this.setState({produtos: newProductsState} );
+    setProdutos(newProductsState);
   }
 
-  render() {
-    return (
-      <div className="parent-product">
-        {this.state.produtos.map(produto => (
+  return (
+    <div className="parent-product">
+      {produtos.map((produto, index) => (
         <div className="card child-product" style={{ width: "18rem" }}>
-        <img src={produto.imagem} className="card-img-top" alt="placeholder" />
-        <div className="card-body">
-          <h6 className="card-title" key={produto.id} >{produto.name}</h6>
-          {produto.show && 
-          <p className="descricao-produto">
-            <label>Preço:</label> R$ {produto.preco}
-            <br />
-            <label>Fabricante:</label> {produto.fabricant}
-            <br />
-            <label>Descrição:</label> {produto.descricao}
-            <br />
-            <br />
-            <button className="btn btn-success" onClick={() => alert("Você comprou um café")}>
-              Comprar
-            </button>
-          </p>
-          }
-          <button className="btn btn-primary"  onClick={() => this.handleClickProduct(produto.id)}>
-          {produto.show ? 'Esconder' : 'Mostrar mais'}
-          </button>
+          <img src={produto.file ? produto.file.url : 'http://s2.glbimg.com/NFdaTj6Q0sx54shLZxRXGp_j4oI=/695x0/s.glbimg.com/po/tt2/f/original/2015/09/09/telaazul1.jpg'} className="card-img-top" alt="placeholder" />
+          <div className="card-body">
+            <h6 className="card-title" key={produto.id} >{produto.name}</h6>
+
+
+          </div>
+
+          <div className="card-footer">
+
+            <div className="d-flex justify-content-around align-items align-items-center">
+
+              <Button id={`Popover${index}`} style={{ background: '#FFF', borderColor: '#FFF', border: 'none' }}>
+                <TiPlus color="black" size={30} />
+              </Button>
+
+              <Button  style={{ background: '#FFF', borderColor: '#FFF', border: 'none'}} onClick = {() => {alert('Adicionado no carrinho')}}>
+                <TiShoppingCart color="black" size={30} />
+              </Button>
+
+            </div>
+
+
+            <Popover placement="bottom" isOpen={produto.show} target={`Popover${index}`} toggle={() => handleClickProduct(produto.id)}>
+              <PopoverHeader>{produto.name}</PopoverHeader>
+              <PopoverBody>
+
+                <ul>
+                  <li>Preço: {produto.value}</li>
+                  <li>Descrição: {produto.description}</li>
+                </ul>
+              </PopoverBody>
+            </Popover>
+
+          </div>
         </div>
-      </div>
       ))}
     </div>
-    );
-  }
+  );
+
 }

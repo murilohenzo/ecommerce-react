@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import "./login.css";
+import "./forgotPassword.css";
 import { history } from "../../App";
 import bcrypt from "bcryptjs"
 
@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import api from '../../services/api'
 
-class Login extends Component {
+class ForgotPassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,7 +35,7 @@ class Login extends Component {
         );
 
         if (userExists) {
-          history.push("/home");
+          history.push("/login");
         } else {
           this.notify("Usuário não existe !!!");
         }
@@ -47,7 +47,7 @@ class Login extends Component {
     return (
       <div>
         <ToastContainer />
-        <h1 className="register-h1">Log in</h1>
+        <h1 className="register-h1">Recuperação de Conta</h1>
         <form onSubmit={this.entrar} className="login">
           <label>Email:</label>
           <br />
@@ -73,7 +73,7 @@ class Login extends Component {
 
           <button type="submit">Entrar</button>
           <div>
-            <center><Link to="/register">Ainda não possui uma conta?</Link> | <Link to="/forgot_password">Esqueceu sua senha?</Link></center>
+            <center><Link to="/login">Faça login</Link></center>
           </div>
         </form>
       </div>
@@ -81,4 +81,4 @@ class Login extends Component {
   }
 }
 
-export default withRouter(Login);
+export default withRouter(ForgotPassword);
