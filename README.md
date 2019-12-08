@@ -4,7 +4,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm start` or `yarn`
+
+### Routes
+
+http://localhost:3000/
+http://localhost:3000/register
+http://localhost:3000/login
+http://localhost:3000/products
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
