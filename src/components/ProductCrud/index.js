@@ -53,7 +53,12 @@ export default class ProductCrud extends Component {
       this.notify("Valor inválida");
     } else {
       const method = product.id ? "put" : "post";
-      api[method]('products', product).then(resp => {
+      api.post('products', product).then(resp => {
+        const list = this.getUpdatedList(resp.data);
+        this.setState({ product: initialState.product, list });
+      });
+
+      api.put(`products/${product.id}`, product).then(resp => {
         const list = this.getUpdatedList(resp.data);
         this.setState({ product: initialState.product, list });
       });
@@ -164,7 +169,7 @@ export default class ProductCrud extends Component {
   }
 
   remove(product) {
-    api.delete('products').then(resp => {
+    api.delete(`products/${product.id}`).then(resp => {
       const list = this.getUpdatedList(product, false);
       this.setState({ list });
     });

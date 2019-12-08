@@ -28,18 +28,10 @@ class Login extends Component {
     } else if (!password) {
       this.notify("Senha é obrigatória !!!");
     } else {
-      api.get('users').then(resp => {
-        const data = resp.data;
-        const userExists = data.find(
-          user => user.email === email && bcrypt.compare(user.password, password)
-        );
-
-        if (userExists) {
-          history.push("/home");
-        } else {
-          this.notify("Usuário não existe !!!");
-        }
+       api.post('sessions', { email, password }).then(resp => {
+        history.push('/home')
       })
+      .catch(this.notify('Usuário não existe'));
     }
   };
 
